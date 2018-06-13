@@ -47,7 +47,7 @@ Interface2::Interface2(QWidget *parent) :
 void Interface2::on_RUN_clicked()
 {
 
-    length=ui.length->value();
+    length=ui.length->value() / 1000.0;
     number_traces = ui.traces->value();
     trace_samples = ui.samples->value();
     sampling_rate = ui.rate->value();
