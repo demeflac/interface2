@@ -8,10 +8,12 @@ const double pi = 3.14159265358979323846;
 QVector<QPointF> interface2::ricker(double f, double dt ,double length)
  {
    size_t N = (length - dt/2.0)/dt;
+   const double discrete_length = (N-1) * dt;
+
    QVector<QPointF> w(N);
    for (size_t i = 0; i < N; ++i)
    {
-      double t = -length/2 + i*dt;
+      double t = -discrete_length/2.0 + i*dt;
       w[i].setX(t);
       w[i].setY(polarity*((1.0 - 2*pi*pi*f*f*t*t) * exp(-pi*pi*f*f*t*t)));
    }
