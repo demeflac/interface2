@@ -3,6 +3,11 @@
 using namespace QtCharts;
 
 constexpr double pi = 3.14159265358979323846;
+#ifdef Q_OS_WIN
+constexpr bool onWindows = true;
+#else
+constexpr bool onWindows = false;
+#endif
 
 struct RickerParameters {
     double f; // Hz
@@ -130,8 +135,9 @@ const QString kStartApp = QStringLiteral("start_sismica_app");
 void Interface2::loadSettings()
 {
     QSettings s;
+    auto const defaultPath = onWindows ? QDir::currentPath() : QDir::homePath();
     auto const sismicaExe = s.value(kSismicaExe,
-                                    QStringLiteral("%1/sismica1.exe").arg(QDir::homePath())).toString();
+                                    QStringLiteral("%1/sismica1.exe").arg(defaultPath)).toString();
     auto const startApp = s.value(kStartApp).toBool();
     ui.sismicaApp->setText(sismicaExe);
     ui.startApp->setChecked(startApp);
