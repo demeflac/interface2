@@ -47,6 +47,7 @@ public:
 
 private:
  Ui::interface2 *ui;
+ QChartView m_view{this};
  void plot();
 
 

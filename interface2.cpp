@@ -29,21 +29,19 @@ QLineSeries* interface2::rickerSeries(double f) {
 
 void interface2::plot()
 {
-    QChartView view;
-       view.chart()->addSeries(rickerSeries(f));
-       view.chart()->createDefaultAxes();
-       view.setMinimumSize(800, 600);
-       view.show();
-
+    m_view.chart()->removeAllSeries();
+    m_view.chart()->addSeries(rickerSeries(f));
+    m_view.chart()->createDefaultAxes();
+    m_view.setMinimumSize(800, 600);
+    m_view.show();
 }
+
 interface2::interface2(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::interface2)
-
 {
-
     ui->setupUi(this);
-
+    m_view.setWindowFlag(Qt::Window);
 }
 
 
