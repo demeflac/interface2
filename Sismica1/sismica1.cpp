@@ -11,13 +11,17 @@
 
 //=========================== CABEÇALHO ==================================
 #include "./sismica1.h"
-#include <locale.h>
+#include <cstdio>
 #include <cstdlib>
-#include <vector>
+#include <fstream>
+#include <iostream>
+#include <limits>
+#include <locale.h>
+#include "math.h"
 
-using vector = std::vector<float>;
 using std::cout;
 using std::ifstream;
+using std::string;
 
 //========================= FUNÇÃO MAIN ==================================
 int main()
@@ -30,10 +34,10 @@ int main()
     a.CarregarConfig();
 
     // Definindo os vetores de dados
-    vector impedancia(a.GetnumAmostra());
-    vector wavelet(a.GettamanhoWavelet());
-    vector refletividade(a.GetnumAmostra());
-    vector traco(a.GetnumAmostra());
+    Sintetico::vector impedancia(a.GetnumAmostra());
+    Sintetico::vector wavelet(a.GettamanhoWavelet());
+    Sintetico::vector refletividade(a.GetnumAmostra());
+    Sintetico::vector traco(a.GetnumAmostra());
 
     // Gerando a wavelet
     a.GeraWavelet(wavelet.data());

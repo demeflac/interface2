@@ -10,13 +10,8 @@
 //////////////////////////////////////////////////////////////////////////
 
 //========================== CABEÇALHOS ==================================
-#include <iostream>
-#include <fstream>
-#include <cstdlib>
-#include <cstdio>
-#include <limits>
 #include <string>
-#include "math.h"
+#include <vector>
 
 //============================ MACROS ====================================
 //Macros para manipulação dos atributos da classe. Funções get e set.
@@ -34,11 +29,11 @@ type Get##name() \
 }\
 
 //=============== DECLARAÇÃO DA CLASSE SINTETICO =========================
-using std::string;
 
 class Sintetico
 {
 public:
+    using vector = std::vector<float>;
 
     //======================= CONSTRUTOR =============================
 
@@ -104,7 +99,7 @@ private:
         implementam suas funções get e set. */
 
     /**< Endereço do arquivo de impedância. */
-    GetSet(string, enderecoImp);
+    GetSet(std::string, enderecoImp);
 
     /**< Número de traços. */
     GetSet(long, numTraco);
