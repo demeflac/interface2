@@ -13,6 +13,11 @@
 #include "./sismica1.h"
 #include <locale.h>
 #include <cstdlib>
+#include <vector>
+
+using vector = std::vector<float>;
+using std::cout;
+using std::ifstream;
 
 //========================= FUNÇÃO MAIN ==================================
 int main()
@@ -25,39 +30,39 @@ int main()
     a.CarregarConfig();
 
     // Definindo os vetores de dados
-    float impedancia[a.GetnumAmostra()] = {};
-    float wavelet[a.GettamanhoWavelet()] = {};
-    float refletividade[a.GetnumAmostra()] = {};
-    float traco[a.GetnumAmostra()] = {};
+    vector impedancia(a.GetnumAmostra());
+    vector wavelet(a.GettamanhoWavelet());
+    vector refletividade(a.GetnumAmostra());
+    vector traco(a.GetnumAmostra());
 
     // Gerando a wavelet
-    a.GeraWavelet(wavelet);
+    a.GeraWavelet(wavelet.data());
 
     // Gerando refletividade padrão
-    a.GeraRefletMod(refletividade,a.Getruido());
+    a.GeraRefletMod(refletividade.data(), a.Getruido());
 
     // Gerando o traço padrão
-    a.convolucao(wavelet,refletividade,traco);
+    a.convolucao(wavelet.data(), refletividade.data(), traco.data());
 
     if(a.Getpadrao())
     {
         // Exportar o traço padrão
         for(int i = 0; i < a.GetnumTraco(); i++)
         {
-            a.GravarTraco(traco, i);
+            a.GravarTraco(traco.data(), i);
         }
     }else
     {
         for(int i = 0; i < a.GetnumTraco(); i++)
         {
             // Atualizando a refletividade
-            a.GeraRefletImped(impedancia, refletividade);
+            a.GeraRefletImped(impedancia.data(), refletividade.data());
 
             // Atualizando o(s) traço(s) sintético(s)
-            a.convolucao(wavelet,refletividade,traco);
+            a.convolucao(wavelet.data(), refletividade.data(), traco.data());
 
             // Exportar o traço atualizado
-            a.GravarTraco(traco, i);
+            a.GravarTraco(traco.data(), i);
         }
     }
     system("PAUSE");
@@ -132,7 +137,7 @@ void Sintetico::GeraRefletMod(float refletividade[], bool ruido)
 void Sintetico::convolucao(float wavelet[], float refletividade[], float traco[])
 {
     // Vetor auxiliar
-    float aux[GetnumAmostra() + GettamanhoWavelet() - 1]={};
+    vector aux(GetnumAmostra() + GettamanhoWavelet() - 1);
 
     // Convolução linear completa
     for(int i = 0; i < GetnumAmostra(); i++)

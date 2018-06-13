@@ -15,6 +15,7 @@
 #include <cstdlib>
 #include <cstdio>
 #include <limits>
+#include <string>
 #include "math.h"
 
 //============================ MACROS ====================================
@@ -33,7 +34,7 @@ type Get##name() \
 }\
 
 //=============== DECLARAÇÃO DA CLASSE SINTETICO =========================
-using namespace std;
+using std::string;
 
 class Sintetico
 {
