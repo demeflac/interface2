@@ -1,0 +1,6 @@
+# Qt Creator local project configuration
+*.pro.user
+CMakeLists.txt.user
+
+# Default Qt Creator build folder pattern
+**/build-*
