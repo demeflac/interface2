@@ -1,302 +1,235 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>interface2</class>
- <widget class="QWidget" name="interface2">
+ <class>Interface2</class>
+ <widget class="QWidget" name="Interface2">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>871</width>
-    <height>154</height>
+    <width>697</width>
+    <height>211</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>interface2</string>
   </property>
-  <widget class="QLabel" name="label_5">
-   <property name="geometry">
-    <rect>
-     <x>80</x>
-     <y>80</y>
-     <width>55</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>Polarity</string>
-   </property>
-  </widget>
-  <widget class="QRadioButton" name="positive">
-   <property name="geometry">
-    <rect>
-     <x>70</x>
-     <y>100</y>
-     <width>95</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Positive</string>
-   </property>
-   <property name="checked">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QRadioButton" name="negative">
-   <property name="geometry">
-    <rect>
-     <x>70</x>
-     <y>120</y>
-     <width>95</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Negative</string>
-   </property>
-  </widget>
-  <widget class="QCheckBox" name="Noise">
-   <property name="geometry">
-    <rect>
-     <x>210</x>
-     <y>80</y>
-     <width>131</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>Introduce Noise</string>
-   </property>
-   <property name="checked">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QCheckBox" name="reflectivity">
-   <property name="geometry">
-    <rect>
-     <x>360</x>
-     <y>80</y>
-     <width>261</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>Using Standard Reflectivity Model</string>
-   </property>
-   <property name="checked">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QCommandLinkButton" name="RUN">
-   <property name="geometry">
-    <rect>
-     <x>210</x>
-     <y>100</y>
-     <width>187</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>RUN</string>
-   </property>
-  </widget>
-  <widget class="QWidget" name="layoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>10</y>
-     <width>681</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <layout class="QHBoxLayout" name="horizontalLayout">
-    <property name="spacing">
-     <number>7</number>
-    </property>
-    <item>
-     <spacer name="horizontalSpacer">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="sizeType">
-       <enum>QSizePolicy::Fixed</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>78</width>
-        <height>17</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item>
-     <widget class="QLabel" name="label">
-      <property name="font">
-       <font>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>Nº of Traces</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="label_2">
-      <property name="font">
-       <font>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>Trace Samples Nº</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="label_3">
-      <property name="font">
-       <font>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>Sampling Rate (ms)</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="label_4">
-      <property name="font">
-       <font>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>Wavelet Freq.</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QWidget" name="layoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>72</x>
-     <y>40</y>
-     <width>621</width>
-     <height>24</height>
-    </rect>
-   </property>
-   <layout class="QHBoxLayout" name="horizontalLayout_2">
-    <item>
-     <widget class="QSpinBox" name="traces">
-      <property name="minimum">
-       <number>1</number>
-      </property>
-      <property name="maximum">
-       <number>100</number>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QSpinBox" name="samples">
-      <property name="minimum">
-       <number>600</number>
-      </property>
-      <property name="maximum">
-       <number>1200</number>
-      </property>
-      <property name="singleStep">
-       <number>100</number>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QDoubleSpinBox" name="rate">
-      <property name="decimals">
-       <number>1</number>
-      </property>
-      <property name="minimum">
-       <double>1.000000000000000</double>
-      </property>
-      <property name="maximum">
-       <double>8.000000000000000</double>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QDoubleSpinBox" name="freq">
-      <property name="decimals">
-       <number>1</number>
-      </property>
-      <property name="minimum">
-       <double>10.000000000000000</double>
-      </property>
-      <property name="maximum">
-       <double>50.000000000000000</double>
-      </property>
-      <property name="singleStep">
-       <double>10.000000000000000</double>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QDoubleSpinBox" name="length">
-   <property name="geometry">
-    <rect>
-     <x>720</x>
-     <y>40</y>
-     <width>121</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <property name="minimum">
-    <double>75.000000000000000</double>
-   </property>
-   <property name="maximum">
-    <double>300.000000000000000</double>
-   </property>
-   <property name="singleStep">
-    <double>25.000000000000000</double>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_6">
-   <property name="geometry">
-    <rect>
-     <x>740</x>
-     <y>10</y>
-     <width>55</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Length&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-  </widget>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="3" column="1">
+    <widget class="QCheckBox" name="noise">
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Introduce Noise</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QDoubleSpinBox" name="rate">
+     <property name="suffix">
+      <string> ms</string>
+     </property>
+     <property name="decimals">
+      <number>1</number>
+     </property>
+     <property name="minimum">
+      <double>1.000000000000000</double>
+     </property>
+     <property name="maximum">
+      <double>8.000000000000000</double>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="4">
+    <widget class="QLabel" name="label_6">
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Length&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <widget class="QLabel" name="label_3">
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Sampling Rate</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="4">
+    <widget class="QDoubleSpinBox" name="length">
+     <property name="suffix">
+      <string> ms</string>
+     </property>
+     <property name="minimum">
+      <double>75.000000000000000</double>
+     </property>
+     <property name="maximum">
+      <double>300.000000000000000</double>
+     </property>
+     <property name="singleStep">
+      <double>25.000000000000000</double>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QSpinBox" name="samples">
+     <property name="minimum">
+      <number>600</number>
+     </property>
+     <property name="maximum">
+      <number>1200</number>
+     </property>
+     <property name="singleStep">
+      <number>100</number>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="3">
+    <widget class="QLabel" name="label_4">
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Wavelet Freq.</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QLabel" name="label_2">
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Trace Samples Nº</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="3">
+    <widget class="QDoubleSpinBox" name="freq">
+     <property name="suffix">
+      <string> Hz</string>
+     </property>
+     <property name="decimals">
+      <number>1</number>
+     </property>
+     <property name="minimum">
+      <double>10.000000000000000</double>
+     </property>
+     <property name="maximum">
+      <double>50.000000000000000</double>
+     </property>
+     <property name="singleStep">
+      <double>10.000000000000000</double>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QLabel" name="label">
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Nº of Traces</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QSpinBox" name="traces">
+     <property name="minimum">
+      <number>1</number>
+     </property>
+     <property name="maximum">
+      <number>100</number>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0" colspan="5">
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="6" column="0" colspan="5">
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Close</set>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="label_5">
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Polarity</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QRadioButton" name="positive">
+     <property name="text">
+      <string>Positive</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0">
+    <widget class="QRadioButton" name="negative">
+     <property name="text">
+      <string>Negative</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="2" colspan="3">
+    <widget class="QCheckBox" name="reflectivity">
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Using Standard Reflectivity Model</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

@@ -1,11 +1,8 @@
 #include "interface2.h"
-#include "ui_interface2.h"
-
 
 const double pi = 3.14159265358979323846;
 
-
-QVector<QPointF> interface2::ricker(double f, double dt ,double length)
+QVector<QPointF> Interface2::ricker(double f, double dt ,double length)
  {
    size_t N = (length - dt/2.0)/dt;
    const double discrete_length = (N-1) * dt;
@@ -21,15 +18,14 @@ QVector<QPointF> interface2::ricker(double f, double dt ,double length)
  }
 
 
-QLineSeries* interface2::rickerSeries(double f) {
+QLineSeries* Interface2::rickerSeries(double f) {
    auto *series = new QLineSeries;
    series->setName(QStringLiteral("Ricker Wavelet for f=%1").arg(f, 2));
-   series->replace(interface2::ricker(f, dt, length));
+   series->replace(Interface2::ricker(f, dt, length));
    return series;
-
 }
 
-void interface2::plot()
+void Interface2::plot()
 {
     m_view.chart()->removeAllSeries();
     m_view.chart()->addSeries(rickerSeries(f));
@@ -38,36 +34,30 @@ void interface2::plot()
     m_view.show();
 }
 
-interface2::interface2(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::interface2)
+Interface2::Interface2(QWidget *parent) :
+    QWidget(parent)
 {
-    ui->setupUi(this);
+    ui.setupUi(this);
+    ui.buttonBox->addButton(&m_runButton, QDialogButtonBox::ApplyRole);
+    connect(&m_runButton, &QPushButton::clicked, this, &Interface2::on_RUN_clicked);
+    connect(ui.buttonBox->button(QDialogButtonBox::Close), &QPushButton::clicked, this, &QWidget::close);
     m_view.setWindowFlag(Qt::Window);
 }
 
-
-interface2::~interface2()
-{
-    delete ui;
-
-}
-
-
-void interface2::on_RUN_clicked()
+void Interface2::on_RUN_clicked()
 {
 
-    length=ui->length->value();
-    number_traces = ui->traces->value();
-    trace_samples = ui->samples->value();
-    sampling_rate = ui->rate->value();
-    dt1=ui->rate->value();
-    wavelet_freq = ui->freq->value();
-    f=ui->freq->value();
+    length=ui.length->value();
+    number_traces = ui.traces->value();
+    trace_samples = ui.samples->value();
+    sampling_rate = ui.rate->value();
+    dt1=ui.rate->value();
+    wavelet_freq = ui.freq->value();
+    f=ui.freq->value();
     dt=dt1/1000;
 
     {
-        if(ui->reflectivity->isChecked())/*refletividade padrao*/
+        if(ui.reflectivity->isChecked())/*refletividade padrao*/
         {
          standard_reflec= 1;
         }
@@ -79,7 +69,7 @@ void interface2::on_RUN_clicked()
 
 
     {
-        if(ui->Noise->isChecked())/*introduzir ruido*/
+        if(ui.noise->isChecked())/*introduzir ruido*/
         {
           noise= 1;
         }
@@ -90,7 +80,7 @@ void interface2::on_RUN_clicked()
     }
 
     {
-        if(ui->negative->isChecked())/*polaridade negativa*/
+        if(ui.negative->isChecked())/*polaridade negativa*/
         {
           polarity=-1;
         }
@@ -98,7 +88,7 @@ void interface2::on_RUN_clicked()
     }
 
     {
-        if(ui->positive->isChecked())/*polaridade positiva*/
+        if(ui.positive->isChecked())/*polaridade positiva*/
         {
           polarity=1;
         }
@@ -179,5 +169,3 @@ void interface2::on_RUN_clicked()
  }
     plot();
 }
-
-
