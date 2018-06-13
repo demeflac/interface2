@@ -112,11 +112,57 @@ Interface2::Interface2(QWidget *parent) :
     QWidget(parent)
 {
     ui.setupUi(this);
+    m_view.setWindowFlag(Qt::Window); // the view is a top-level window
     m_runButton.setText(tr("Run"));
     ui.buttonBox->addButton(&m_runButton, QDialogButtonBox::ApplyRole);
+
     connect(&m_runButton, &QPushButton::clicked, this, &Interface2::run);
     connect(ui.buttonBox->button(QDialogButtonBox::Close), &QPushButton::clicked, this, &QWidget::close);
-    m_view.setWindowFlag(Qt::Window); // the view is a top-level window
+    connect(ui.sismicaApp, &QLineEdit::editingFinished, this, &Interface2::saveSettings);
+    connect(ui.startApp, &QCheckBox::toggled, this, &Interface2::saveSettings);
+    connect(ui.browseSismicaApp, &QToolButton::clicked, this, &Interface2::browseSismicaApp);
+    loadSettings();
+}
+
+const QString kSismicaExe = QStringLiteral("sismica_exe");
+const QString kStartApp = QStringLiteral("start_sismica_app");
+
+void Interface2::loadSettings()
+{
+    QSettings s;
+    auto const sismicaExe = s.value(kSismicaExe,
+                                    QStringLiteral("%1/sismica1.exe").arg(QDir::homePath())).toString();
+    auto const startApp = s.value(kStartApp).toBool();
+    ui.sismicaApp->setText(sismicaExe);
+    ui.startApp->setChecked(startApp);
+}
+
+void Interface2::saveSettings()
+{
+    QSettings s;
+    auto const sismicaExe = ui.sismicaApp->text();
+    auto const startApp = ui.startApp->isChecked();
+    s.setValue(kSismicaExe, sismicaExe);
+    s.setValue(kStartApp, startApp);
+}
+
+QString Interface2::sismicaPath() const
+{
+    return QFileInfo(ui.sismicaApp->text()).absolutePath();
+}
+
+void Interface2::browseSismicaApp()
+{
+    if (!m_fileDialog) {
+        m_fileDialog = new QFileDialog(this);
+        connect(m_fileDialog, &QFileDialog::fileSelected, ui.sismicaApp, &QLineEdit::setText);
+        connect(m_fileDialog, &QFileDialog::fileSelected, this, &Interface2::saveSettings);
+        m_fileDialog->setAcceptMode(QFileDialog::AcceptOpen);
+        m_fileDialog->setFileMode(QFileDialog::ExistingFile);
+        m_fileDialog->setWindowTitle(tr("Select the Sismica Executable"));
+    }
+    m_fileDialog->setDirectory(sismicaPath());
+    m_fileDialog->show();
 }
 
 void Interface2::run()
@@ -137,15 +183,23 @@ void Interface2::run()
     sp.use_standard_reflectivity = ui.reflectivity->isChecked();
 
     bool saved = false;
-    QSaveFile file{"sismica1.ini"};
+    auto const iniFileName = QStringLiteral("%1/sismica1.ini").arg(sismicaPath());
+    QSaveFile file(iniFileName);
     if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
         file.write(initFileContents(sp));
         saved = file.commit();
     }
 
+    bool runFailed = false;
+    auto const app = ui.sismicaApp->text();
+    if (ui.startApp->isChecked())
+        runFailed = !QProcess::startDetached(app, {}, sismicaPath());
+
     plot(rickerSeries(p));
     if (!saved)
-        QMessageBox::warning(this, tr("Sismica"), tr("Error: Unable to save the file."));
+        QMessageBox::warning(this, tr("Sismica"), tr("Error: Unable to save the file \"%1\".").arg(iniFileName));
+    if (runFailed)
+        QMessageBox::warning(this, tr("Sismica"), tr("Error: Unable to start to application \"%1\".").arg(app));
 }
 
 void Interface2::plot(QLineSeries *series)
