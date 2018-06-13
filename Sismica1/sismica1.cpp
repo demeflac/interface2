@@ -10,13 +10,14 @@
 //////////////////////////////////////////////////////////////////////////
 
 //=========================== CABEÇALHO ==================================
-#include "./sismica1.h"
+#include "sismica1.h"
+#include "utf8console/utf8console.h"
+#include <clocale>
 #include <cstdio>
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
 #include <limits>
-#include <locale.h>
 #include "math.h"
 
 using std::cout;
@@ -26,7 +27,13 @@ using std::string;
 //========================= FUNÇÃO MAIN ==================================
 int main()
 {
-    setlocale(LC_ALL, "Portuguese");
+#ifdef _WIN32
+    setlocale(LC_ALL, "pt-BR.65001");
+#else
+    setlocale(LC_ALL, "pt_BR.UTF-8");
+#endif
+    auto transcoder = utf8con::make_utf8_output();
+
     // Instanciando a classe Sintetico
     Sintetico a = Sintetico();
 
