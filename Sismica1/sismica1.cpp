@@ -173,7 +173,7 @@ void Sintetico::CarregarConfig()
     // Contador para os atributos
     int contParametro = 0;
 
-	string linha;
+    string linha;
     if (ifpConfig)
     {
         // Controle de tela
@@ -343,7 +343,7 @@ void Sintetico::GravarTraco(float traco[], int indice)
             }
         }
 
-    // Se for o primeiro traço, descarta o arquivo
+        // Se for o primeiro traço, descarta o arquivo
     }else
     {
         for (int i = 0; i < GetnumAmostra(); i++)
