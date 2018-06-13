@@ -338,7 +338,7 @@ void Sintetico::GravarTraco(float traco[], int indice)
                 // Concatena as informações do arquivo com o traço atual
                 fprintf(saida,"%s",linha.c_str());
                 fprintf(saida,"%3.2f",traco[cont]);
-                fprintf(saida,"\t\n","");
+                fprintf(saida,"\t\n");
                 cont++;
             }
         }
@@ -349,7 +349,7 @@ void Sintetico::GravarTraco(float traco[], int indice)
         for (int i = 0; i < GetnumAmostra(); i++)
         {
             fprintf(saida,"%3.2f",traco[cont]);
-            fprintf(saida,"\t\n","");
+            fprintf(saida,"\t\n");
             cont++;
         }
     }
