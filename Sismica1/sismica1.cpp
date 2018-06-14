@@ -9,7 +9,7 @@
 //                                                                       /
 //////////////////////////////////////////////////////////////////////////
 
-//=========================== CABEÇALHO ==================================
+//=========================== CABEÇALHOS =================================
 #include "sismica1.h"
 #include "utf8console/utf8console.h"
 #include <clocale>
@@ -24,14 +24,16 @@ using std::cout;
 using std::ifstream;
 using std::string;
 
+#ifdef _WIN32
+constexpr static bool on_windows = true;
+#else
+constexpr static bool on_windows = false;
+#endif
+
 //========================= FUNÇÃO MAIN ==================================
 int main()
 {
-#ifdef _WIN32
-    setlocale(LC_ALL, "pt-BR.65001");
-#else
-    setlocale(LC_ALL, "pt_BR.UTF-8");
-#endif
+    setlocale(LC_ALL, on_windows ? "pt-BR.65001" : "pt_BR.UTF-8");
     auto transcoder = utf8con::make_utf8_output();
 
     // Instanciando a classe Sintetico
@@ -76,7 +78,12 @@ int main()
             a.GravarTraco(traco.data(), i);
         }
     }
-    system("PAUSE");
+
+    if (on_windows) {
+        cout << "** Pressione ENTER para continuar. **\n";
+        string dummy;
+        std::getline(std::cin, dummy);
+    }
     return 0;
 }
 
