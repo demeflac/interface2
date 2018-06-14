@@ -1,0 +1,3 @@
+[submodule "utf8console"]
+	path = utf8console
+	url = https://github.com/KubaO/utf8console.h
