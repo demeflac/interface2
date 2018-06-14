@@ -1,4 +1,4 @@
-#ifndef INTERFACE2_H
+﻿#ifndef INTERFACE2_H
 #define INTERFACE2_H
 #include <QChartView>
 #include <QFileDialog>

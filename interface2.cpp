@@ -1,4 +1,4 @@
-#include "interface2.h"
+﻿#include "interface2.h"
 #include <QtCharts>
 using namespace QtCharts;
 
